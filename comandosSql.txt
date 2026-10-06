@@ -1,0 +1,14 @@
+// Copia aquí todos los comandos que has usado para crear la base de datos.
+CREATE TABLE SOLICITUD (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(50) NOT NULL,
+    apellidos VARCHAR(100) NOT NULL,
+    dni VARCHAR(15) NOT NULL,
+    f_nac DATE NOT NULL,
+    tlf VARCHAR(20) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    profesion VARCHAR(50) NOT NULL,
+    jornada VARCHAR(20) NOT NULL,
+    euskera BOOLEAN NOT NULL DEFAULT 0,
+    ingles BOOLEAN NOT NULL DEFAULT 0
+);
