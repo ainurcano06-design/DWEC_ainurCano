@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Números primos</title>
+</head>
+<body>
+    <h2>Números primos</h2>
+    <input type="number" id="numero" placeholder="Introduce un número">
+    <button onclick="mostrarPrimos()">Mostrar primos</button>
+    <table border="1">
+        <tr id="fila"></tr>
+    </table>
+    <script>
+        function mostrarPrimos() {
+            let num = parseInt(document.getElementById("numero").value);
+            let fila = document.getElementById("fila");
+
+            fila.innerHTML = "";
+
+            for (let i = 1; i <= num; i++) {
+
+                let divisores = 0;
+
+                for (let j = 1; j <= i; j++) {
+                    if (i % j === 0) {
+                        divisores++;
+                    }
+                }
+
+                if (divisores === 2 || i === 1) {
+                    fila.innerHTML += "<td>" + i + "</td>";
+                }
+            }
+        }
+    </script>
+</body>
+</html>

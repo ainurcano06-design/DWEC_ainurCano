@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Enlaces externos</title>
+</head>
+<body>
+    <h1>Mis enlaces</h1>
+    <p>
+        <a href="https://www.google.com">Google</a>
+    </p>
+    <p>
+        <a href="https://www.youtube.com">YouTube</a>
+    </p>
+    <p>
+        <a href="pagina.html">Mi página</a>
+    </p>
+    <p>
+        <a href="contacto.html">Contacto</a>
+    </p>
+    <script>
+        const enlaces = document.querySelectorAll('a[href*="://"]');
+
+        for (let i = 0; i < enlaces.length; i++) {
+            enlaces[i].style.color = "orange";
+        }
+    </script>
+</body>
+</html>

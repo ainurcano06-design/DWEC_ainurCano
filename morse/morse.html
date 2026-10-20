@@ -1,0 +1,124 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Traductor de código morse</title>
+</head>
+<body>
+    <h1>Traductor de código morse</h1>
+    <p id="resultado">El resultado aparecerá aquí.</p>
+    <script>
+        // Alfabeto de codigo morse
+        const morse = {
+            "A": ".—",    "B": "—...",  "C": "—.—.",
+            "D": "—..",   "E": ".",     "F": "..—.",
+            "G": "——.",   "H": "....",  "I": "..",
+            "J": ".———",  "K": "—.—",   "L": ".—..",
+            "M": "——",    "N": "—.",    "O": "———",
+            "P": ".——.",  "Q": "——.—",  "R": ".—.",
+            "S": "...",   "T": "—",     "U": "..—",
+            "V": "...—",  "W": ".——",   "X": "—..—",
+            "Y": "—.——",  "Z": "——..",
+            "0": "—————", "1": ".————", "2": "..———",
+            "3": "...——", "4": "....—", "5": ".....",
+            "6": "—....", "7": "——...", "8": "———..",
+            "9": "————.",
+            "Ñ": "——.——",
+            ".": ".—.—.—",
+            ",": "——..——",
+            "?": "..——..",
+            "!": "—.——.—"
+        };
+        // Pedir el texto al usuario
+        let texto = window.prompt("Escribe un texto o código morse:");
+        const resultado = document.getElementById("resultado");
+        if (texto === null || texto.trim() === "") {
+            resultado.textContent = "No has introducido ningún texto.";
+        } else {
+            texto = texto.trim().replace(/-/g, "—");
+
+            // Comprobar si la entrada es código morse
+            const esMorse = /^[. —\s]+$/.test(texto) &&
+                            /[.—]/.test(texto);
+
+            let respuesta = "";
+
+            if (esMorse) {
+
+                // Convertir morse a texto
+                const palabras = texto.split(/\s{2,}/);
+
+                for (let i = 0; i < palabras.length; i++) {
+                    const letras = palabras[i].trim().split(/\s+/);
+
+                    for (let j = 0; j < letras.length; j++) {
+                        let letraEncontrada = "?";
+
+                        for (let letra in morse) {
+                            if (morse[letra] === letras[j]) {
+                                letraEncontrada = letra;
+                            }
+                        }
+
+                        respuesta += letraEncontrada;
+                    }
+
+                    if (i < palabras.length - 1) {
+                        respuesta += " ";
+                    }
+                }
+
+            } else {
+
+                // Convertir texto a morse
+                texto = texto.toUpperCase();
+
+                for (let i = 0; i < texto.length; i++) {
+                    const letra = texto[i];
+
+                    if (letra === " ") {
+                        respuesta += " ";
+                    } else if (morse[letra]) {
+                        respuesta += morse[letra] + " ";
+                    } else {
+                        respuesta += "? ";
+                    }
+                }
+
+                // Separar las palabras con dos espacios
+                respuesta = respuesta.trim().replace(/ {2,}/g, " ");
+                
+                // Reconstruir el resultado usando dos espacios
+                respuesta = "";
+                const palabrasTexto = texto.split(" ");
+
+                for (let i = 0; i < palabrasTexto.length; i++) {
+                    const letrasTexto = palabrasTexto[i];
+
+                    for (let j = 0; j < letrasTexto.length; j++) {
+                        const letra = letrasTexto[j];
+
+                        if (morse[letra]) {
+                            respuesta += morse[letra];
+                        } else {
+                            respuesta += "?";
+                        }
+
+                        if (j < letrasTexto.length - 1) {
+                            respuesta += " ";
+                        }
+                    }
+
+                    if (i < palabrasTexto.length - 1) {
+                        respuesta += "  ";
+                    }
+                }
+            }
+
+            resultado.textContent = "Resultado: " + respuesta;
+        }
+    </script>
+
+</body>
+</html>

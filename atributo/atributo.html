@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio de atributos</title>
+</head>
+<body>
+
+    <div id="widget" data-widget-name="Mi primer widget">
+        Hola, este es mi widget.
+    </div>
+
+    <script>
+        const elemento = document.getElementById("widget");
+
+        const nombre = elemento.getAttribute("data-widget-name");
+
+        console.log(nombre);
+    </script>
+
+</body>
+</html>
